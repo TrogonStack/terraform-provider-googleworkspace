@@ -146,7 +146,12 @@ func (p *googleworkspaceProvider) Configure(ctx context.Context, req provider.Co
 	switch {
 	case accessToken != "":
 		token := &oauth2.Token{AccessToken: accessToken}
-		ts, err := impersonate.CredentialsTokenSource(ctx, impersonate.CredentialsConfig{
+		// This ctx reaches the base credential's token source inside the impersonation
+		// client, which holds onto it for every later refresh. Configure's ctx is canceled
+		// once Configure returns, so a refresh during any later Read/Create/Update/Delete
+		// would fail with "context canceled". WithoutCancel strips the cancellation and
+		// deadline but keeps any values (e.g. logging fields) the framework attached.
+		ts, err := impersonate.CredentialsTokenSource(context.WithoutCancel(ctx), impersonate.CredentialsConfig{
 			TargetPrincipal: serviceAccount,
 			Scopes:          scopes,
 			Subject:         subject,
@@ -158,7 +163,8 @@ func (p *googleworkspaceProvider) Configure(ctx context.Context, req provider.Co
 		tokenSource = ts
 
 	default:
-		ts, err := impersonate.CredentialsTokenSource(ctx, impersonate.CredentialsConfig{
+		// See comment above: WithoutCancel is required here for the same reason.
+		ts, err := impersonate.CredentialsTokenSource(context.WithoutCancel(ctx), impersonate.CredentialsConfig{
 			TargetPrincipal: serviceAccount,
 			Scopes:          scopes,
 			Subject:         subject,
