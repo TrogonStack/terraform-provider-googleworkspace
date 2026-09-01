@@ -15,7 +15,7 @@ func main() {
 		context.Background(),
 		provider.New(version),
 		providerserver.ServeOpts{
-			Address: "registry.opentofu.org/trogonstack/googleworkspace",
+			Address: "registry.terraform.io/trogonstack/googleworkspace",
 		},
 	)
 	if err != nil {
