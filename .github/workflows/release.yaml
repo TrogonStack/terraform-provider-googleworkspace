@@ -46,8 +46,8 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          GPG_PRIVATE_KEY: ${{ secrets.SECRETS_VAULT }}/GPG_PRIVATE_KEY
-          GPG_FINGERPRINT: ${{ secrets.SECRETS_VAULT }}/GPG_FINGERPRINT
+          GPG_PRIVATE_KEY: ${{ secrets.SECRETS_VAULT_ID }}/TrogonStack/GPG_PRIVATE_KEY
+          GPG_FINGERPRINT: ${{ secrets.SECRETS_VAULT_ID }}/TrogonStack/GPG_FINGERPRINT
       - name: Import GPG key
         run: printf '%s' "$GPG_PRIVATE_KEY" | gpg --batch --import
       - run: mise run build
