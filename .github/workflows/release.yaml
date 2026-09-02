@@ -40,6 +40,7 @@ jobs:
           ref: ${{ needs.release-please.outputs.tag_name }}
           fetch-depth: 0
       - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+      - run: mise run build
       - name: Load signing key
         uses: 1password/load-secrets-action@70062d7a876d3eb6334754fa26efd2fbd90c32f2 # v5.0.1
         with:
@@ -51,7 +52,6 @@ jobs:
           GPG_FINGERPRINT: ${{ secrets.SECRETS_VAULT_ID }}/dejxtftpwbmjktkq4zk24uyvjq/GPG_FINGERPRINT
       - name: Import GPG key
         run: printf '%s' "$GPG_PRIVATE_KEY" | gpg --batch --import
-      - run: mise run build
       - name: Publish release artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

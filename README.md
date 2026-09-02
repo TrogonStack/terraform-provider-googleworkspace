@@ -27,7 +27,7 @@ provider "googleworkspace" {
 | `oauth_scopes`            | n/a                           | OAuth scopes for the API client. Defaults to a set covering Admin SDK, Groups Settings, and Drive.                    |
 | `retry_on`                | n/a                           | Additional HTTP status codes to retry. Defaults to `[502]`; 429, 403 quota errors, and 5xx (except 501) always retry. |
 
-Credentials resolve from Application Default Credentials unless `access_token` is set. Nothing is read from a service account key file on disk.
+Credentials resolve from Application Default Credentials unless `access_token` is set. ADC covers the key file named by `GOOGLE_APPLICATION_CREDENTIALS`, `gcloud` user credentials, workload identity federation, and the Compute Engine or GKE metadata server. Whichever it finds becomes the base credential used to impersonate `service_account`.
 
 ## Resources and data sources
 
@@ -48,6 +48,14 @@ Credentials resolve from Application Default Credentials unless `access_token` i
 ## Example
 
 ```hcl
+terraform {
+  required_providers {
+    googleworkspace = {
+      source = "trogonstack/googleworkspace"
+    }
+  }
+}
+
 resource "googleworkspace_org_unit" "engineering" {
   name                 = "Engineering"
   parent_org_unit_path = "/"

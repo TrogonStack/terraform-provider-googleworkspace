@@ -28,7 +28,7 @@ export SERVICE_ACCOUNT=terraform@my-project.iam.gserviceaccount.com
 export SUBJECT=admin@example.com
 export GOOGLEWORKSPACE_CUSTOMER_ID=C01abc23d
 
-go test ./internal/provider/ -v -run TestAccUser
+mise exec -- go test ./internal/provider/ -v -run TestAccUser
 ```
 
 ## Code layout
