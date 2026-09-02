@@ -30,6 +30,7 @@ func (d *roleDataSource) Metadata(_ context.Context, req datasource.MetadataRequ
 
 func (d *roleDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Looks up a Google Workspace admin role by name via the Admin SDK Directory API.\n\nUse it to resolve built-in role names such as `_GROUPS_ADMIN_ROLE` into the role ID that `googleworkspace_role_assignment` needs.",
 		Attributes: map[string]schema.Attribute{
 			"id":   schema.StringAttribute{Computed: true},
 			"name": schema.StringAttribute{Required: true},

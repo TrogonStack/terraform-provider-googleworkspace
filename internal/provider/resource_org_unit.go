@@ -40,6 +40,7 @@ func (r *orgUnitResource) Metadata(_ context.Context, req resource.MetadataReque
 
 func (r *orgUnitResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Manages a Google Workspace organizational unit via the Admin SDK Directory API.\n\nChanging `parent_org_unit_path` replaces the organizational unit.",
 		Attributes: map[string]schema.Attribute{
 			"id":            rsId(),
 			"org_unit_path": schema.StringAttribute{Computed: true},

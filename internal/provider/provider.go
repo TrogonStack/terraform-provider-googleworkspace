@@ -40,6 +40,33 @@ func (p *googleworkspaceProvider) Metadata(ctx context.Context, req provider.Met
 
 func (p *googleworkspaceProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: `Manage a Google Workspace tenant with Terraform.
+
+The provider covers the Admin SDK Directory, Groups Settings, and Drive APIs:
+users, groups and their memberships, organizational units, custom user schemas,
+admin role assignments, shared drives, and Drive permissions.
+
+## Authentication
+
+Authentication runs through a service account with
+[Domain-Wide Delegation](https://developers.google.com/workspace/guides/create-credentials#optional_set_up_domain-wide_delegation_for_a_service_account)
+impersonating a Workspace administrator.
+
+The base credential comes from
+[Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials)
+unless ` + "`access_token`" + ` is set. ADC covers the key file named by
+` + "`GOOGLE_APPLICATION_CREDENTIALS`" + `, ` + "`gcloud`" + ` user credentials, workload identity
+federation, and the Compute Engine or GKE metadata server. Whichever it finds is
+used to impersonate ` + "`service_account`" + `, which in turn acts as
+` + "`impersonated_user_email`" + `.
+
+## Environment variables
+
+| Attribute | Environment variable |
+| --- | --- |
+| ` + "`service_account`" + ` | ` + "`SERVICE_ACCOUNT`" + ` |
+| ` + "`impersonated_user_email`" + ` | ` + "`SUBJECT`" + ` |
+| ` + "`customer_id`" + ` | ` + "`GOOGLEWORKSPACE_CUSTOMER_ID`" + ` |`,
 		Attributes: map[string]schema.Attribute{
 			"access_token": schema.StringAttribute{
 				Optional:  true,

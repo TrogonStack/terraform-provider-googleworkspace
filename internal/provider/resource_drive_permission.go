@@ -42,6 +42,7 @@ func (r *drivePermissionResource) Metadata(_ context.Context, req resource.Metad
 
 func (r *drivePermissionResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Manages a single permission on a Google Drive file or shared drive via the Drive API.",
 		Attributes: map[string]schema.Attribute{
 			"id": rsId(),
 			"permission_id": schema.StringAttribute{
