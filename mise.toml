@@ -2,7 +2,6 @@
 go = "1.26"
 golangci-lint = "2.12"
 goreleaser = "2"
-"go:github.com/go-semantic-release/semantic-release/v2/cmd/semantic-release" = "2.31"
 
 [tasks.build]
 description = "Full CI pipeline"
@@ -33,5 +32,5 @@ fi
 """
 
 [tasks.release]
-description = "create semver release from conventional commits"
-run = "semantic-release --hooks goreleaser --allow-initial-development-versions"
+description = "build and publish release artifacts for the current tag"
+run = "goreleaser release --clean"
