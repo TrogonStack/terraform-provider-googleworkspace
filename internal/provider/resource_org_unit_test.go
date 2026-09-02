@@ -20,21 +20,21 @@ func TestAccOrgUnit_Create(t *testing.T) {
 			createBody = body
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-001",
-				"name":             "Engineering",
-				"orgUnitPath":      "/Engineering",
+				"orgUnitId":         "id:ou-001",
+				"name":              "Engineering",
+				"orgUnitPath":       "/Engineering",
 				"parentOrgUnitPath": "/",
-				"description":      "Engineering team",
+				"description":       "Engineering team",
 			})
 
 		case r.Method == "GET" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits/id:ou-001"):
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-001",
-				"name":             "Engineering",
-				"orgUnitPath":      "/Engineering",
+				"orgUnitId":         "id:ou-001",
+				"name":              "Engineering",
+				"orgUnitPath":       "/Engineering",
 				"parentOrgUnitPath": "/",
-				"description":      "Engineering team",
+				"description":       "Engineering team",
 			})
 
 		case r.Method == "DELETE" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits/id:ou-001"):
@@ -89,9 +89,9 @@ func TestAccOrgUnit_Update(t *testing.T) {
 		case r.Method == "POST" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits"):
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-002",
-				"name":             "Platform",
-				"orgUnitPath":      "/Platform",
+				"orgUnitId":         "id:ou-002",
+				"name":              "Platform",
+				"orgUnitPath":       "/Platform",
 				"parentOrgUnitPath": "/",
 			})
 
@@ -99,11 +99,11 @@ func TestAccOrgUnit_Update(t *testing.T) {
 			step++
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-002",
-				"name":             "Platform Engineering",
-				"orgUnitPath":      "/Platform Engineering",
+				"orgUnitId":         "id:ou-002",
+				"name":              "Platform Engineering",
+				"orgUnitPath":       "/Platform Engineering",
 				"parentOrgUnitPath": "/",
-				"description":      "Platform eng",
+				"description":       "Platform eng",
 			})
 
 		case r.Method == "GET" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits/id:ou-002"):
@@ -117,9 +117,9 @@ func TestAccOrgUnit_Update(t *testing.T) {
 			}
 			resp := map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-002",
-				"name":             name,
-				"orgUnitPath":      ouPath,
+				"orgUnitId":         "id:ou-002",
+				"name":              name,
+				"orgUnitPath":       ouPath,
 				"parentOrgUnitPath": "/",
 			}
 			if desc != "" {
@@ -173,18 +173,18 @@ func TestAccOrgUnit_Import(t *testing.T) {
 		case r.Method == "POST" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits"):
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-imp",
-				"name":             "Imported",
-				"orgUnitPath":      "/Imported",
+				"orgUnitId":         "id:ou-imp",
+				"name":              "Imported",
+				"orgUnitPath":       "/Imported",
 				"parentOrgUnitPath": "/",
 			})
 
 		case r.Method == "GET" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits/id:ou-imp"):
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-imp",
-				"name":             "Imported",
-				"orgUnitPath":      "/Imported",
+				"orgUnitId":         "id:ou-imp",
+				"name":              "Imported",
+				"orgUnitPath":       "/Imported",
 				"parentOrgUnitPath": "/",
 			})
 
@@ -227,29 +227,29 @@ func TestAccOrgUnit_ClearDescription(t *testing.T) {
 		case r.Method == "POST" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits"):
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-desc",
-				"name":             "DescOU",
-				"orgUnitPath":      "/DescOU",
+				"orgUnitId":         "id:ou-desc",
+				"name":              "DescOU",
+				"orgUnitPath":       "/DescOU",
 				"parentOrgUnitPath": "/",
-				"description":      "Initial",
+				"description":       "Initial",
 			})
 
 		case r.Method == "PUT" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits/id:ou-desc"):
 			step++
 			jsonResponse(w, 200, map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-desc",
-				"name":             "DescOU",
-				"orgUnitPath":      "/DescOU",
+				"orgUnitId":         "id:ou-desc",
+				"name":              "DescOU",
+				"orgUnitPath":       "/DescOU",
 				"parentOrgUnitPath": "/",
 			})
 
 		case r.Method == "GET" && strings.Contains(r.URL.Path, "/admin/directory/v1/customer/C00000000/orgunits/id:ou-desc"):
 			resp := map[string]any{
 				"kind":              "admin#directory#orgUnit",
-				"orgUnitId":        "id:ou-desc",
-				"name":             "DescOU",
-				"orgUnitPath":      "/DescOU",
+				"orgUnitId":         "id:ou-desc",
+				"name":              "DescOU",
+				"orgUnitPath":       "/DescOU",
 				"parentOrgUnitPath": "/",
 			}
 			if step == 0 {

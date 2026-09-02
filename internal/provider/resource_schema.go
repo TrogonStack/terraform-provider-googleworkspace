@@ -52,6 +52,7 @@ func (r *schemaResource) Metadata(_ context.Context, req resource.MetadataReques
 
 func (r *schemaResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Manages a custom user schema via the Admin SDK Directory API.\n\nCustom schemas define the additional fields that `googleworkspace_user` can populate through its `custom_schemas` block.",
 		Attributes: map[string]schema.Attribute{
 			"id": rsId(),
 			"schema_name": schema.StringAttribute{

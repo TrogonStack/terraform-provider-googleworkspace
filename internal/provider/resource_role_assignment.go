@@ -44,7 +44,8 @@ func (r *roleAssignmentResource) Metadata(_ context.Context, req resource.Metada
 func (r *roleAssignmentResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	forceNew := []planmodifier.String{stringplanmodifier.RequiresReplace()}
 	resp.Schema = schema.Schema{
-		Version: 1,
+		MarkdownDescription: "Assigns a Google Workspace admin role to a user or group via the Admin SDK Directory API.\n\nEvery attribute forces replacement, since the API has no update operation for role assignments. Look up built-in role IDs with the `googleworkspace_role` data source.",
+		Version:             1,
 		Attributes: map[string]schema.Attribute{
 			"id": rsId(),
 			"role_id": schema.StringAttribute{

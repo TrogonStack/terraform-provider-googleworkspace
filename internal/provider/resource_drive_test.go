@@ -566,7 +566,6 @@ resource "googleworkspace_drive" "test" {
 	})
 }
 
-
 func TestAccDrive_NoRestrictionsBlock(t *testing.T) {
 	server := setupTestServer(t, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch {

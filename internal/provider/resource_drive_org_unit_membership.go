@@ -40,6 +40,7 @@ func (r *driveOrgUnitMembershipResource) Metadata(_ context.Context, req resourc
 
 func (r *driveOrgUnitMembershipResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Places a Google Drive shared drive into an organizational unit via the Cloud Identity Orgunits Memberships API.\n\nA shared drive belongs to exactly one organizational unit, so this resource moves the drive rather than adding a second membership.",
 		Attributes: map[string]schema.Attribute{
 			"id": rsId(),
 			"drive_id": schema.StringAttribute{

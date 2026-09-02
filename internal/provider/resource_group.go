@@ -39,6 +39,7 @@ func (r *groupResource) Metadata(_ context.Context, req resource.MetadataRequest
 
 func (r *groupResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Manages a Google Workspace group and its aliases via the Admin SDK Directory API.\n\nGroup membership is managed separately by `googleworkspace_group_members`, and posting and visibility policy by `googleworkspace_group_settings`.",
 		Attributes: map[string]schema.Attribute{
 			"id":          rsId(),
 			"email":       schema.StringAttribute{Required: true},

@@ -34,8 +34,8 @@ type groupMemberModel struct {
 }
 
 type groupMembersResourceModel struct {
-	Id      types.String      `tfsdk:"id"`
-	GroupId types.String      `tfsdk:"group_id"`
+	Id      types.String       `tfsdk:"id"`
+	GroupId types.String       `tfsdk:"group_id"`
 	Members []groupMemberModel `tfsdk:"members"`
 }
 
@@ -45,6 +45,7 @@ func (r *groupMembersResource) Metadata(_ context.Context, req resource.Metadata
 
 func (r *groupMembersResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Manages the complete membership of a Google Workspace group via the Admin SDK Directory API.\n\nThis resource is authoritative for the group: members added outside Terraform are removed on the next apply.",
 		Attributes: map[string]schema.Attribute{
 			"id": rsId(),
 			"group_id": schema.StringAttribute{

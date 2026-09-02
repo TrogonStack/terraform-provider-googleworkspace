@@ -42,6 +42,7 @@ func (r *groupSettingsResource) Metadata(_ context.Context, req resource.Metadat
 
 func (r *groupSettingsResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Manages the posting and visibility settings of a Google Workspace group via the Groups Settings API.\n\nThe group itself is managed by `googleworkspace_group`.",
 		Attributes: map[string]schema.Attribute{
 			"id": rsId(),
 			"email": schema.StringAttribute{

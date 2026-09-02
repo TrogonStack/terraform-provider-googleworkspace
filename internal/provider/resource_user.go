@@ -58,7 +58,8 @@ func (r *userResource) Metadata(_ context.Context, req resource.MetadataRequest,
 
 func (r *userResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		Version: 1,
+		MarkdownDescription: "Manages a Google Workspace user via the Admin SDK Directory API.\n\nCustom schema values are supplied as JSON-encoded strings, so wrap each value in `jsonencode`.",
+		Version:             1,
 		Attributes: map[string]schema.Attribute{
 			"id":            rsId(),
 			"primary_email": schema.StringAttribute{Required: true},

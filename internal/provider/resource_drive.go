@@ -50,6 +50,7 @@ func (r *driveResource) Metadata(_ context.Context, req resource.MetadataRequest
 
 func (r *driveResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: "Manages a Google Drive shared drive and its sharing restrictions via the Drive API.",
 		Attributes: map[string]schema.Attribute{
 			"id": rsId(),
 			"name": schema.StringAttribute{
